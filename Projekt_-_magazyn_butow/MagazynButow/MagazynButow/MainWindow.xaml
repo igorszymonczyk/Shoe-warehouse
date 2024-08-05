@@ -1,0 +1,100 @@
+﻿<Window x:Class="MagazynButow.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:MagazynButow.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="900">
+    <Window.DataContext>
+        <vm:MagazynButowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Informacje ogólne">
+                <Canvas Name="myCanvas1" Background="LightCyan">
+                    <DataGrid Height="319" Width="764" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding TableData}"  AutoGenerateColumns="True" HorizontalAlignment="Left" Canvas.Top="65" VerticalAlignment="Center" Canvas.Left="20"/>
+                    <ComboBox Canvas.Left="342" Canvas.Top="19" Width="120" ItemsSource="{Binding Tables}" SelectedItem="{Binding SelectedTable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Dodaj Buta">
+                <Canvas x:Name="myCanvas2" Background="LightCyan">
+                    <Label Content="Styl" Canvas.Left="96" Canvas.Top="41"/>
+                    <Label Content="Marka" Canvas.Left="569" Canvas.Top="41" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="SKU" Canvas.Left="95" Canvas.Top="152" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Kolorystyka" Canvas.Left="326" Canvas.Top="152" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Content="Model" Canvas.Left="569" Canvas.Top="152" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <Label Content="Kolory buta" Canvas.Left="326" Canvas.Top="267" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox Canvas.Left="50" Canvas.Top="88" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Style}" SelectedItem="{Binding Styl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox Canvas.Left="531" Canvas.Top="88" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Marki}" SelectedItem="{Binding Marka, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Canvas.Left="51" TextWrapping="Wrap" Canvas.Top="194" Width="120" Text="{Binding SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Canvas.Left="301" TextWrapping="Wrap" Canvas.Top="194" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Kolorystyka, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Canvas.Left="531" TextWrapping="Wrap" Canvas.Top="194" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Content="niebieski" Canvas.Left="75" Canvas.Top="321" IsChecked="{Binding KoloryButow[niebieski], Mode=TwoWay}" />
+                    <CheckBox Content="czerwony" Canvas.Left="205" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding KoloryButow[czerwony], Mode=TwoWay}" />
+                    <CheckBox Content="żółty" Canvas.Left="326" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding KoloryButow[żółty], Mode=TwoWay}" />
+                    <CheckBox Content="szary" Canvas.Left="555" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding KoloryButow[szary], Mode=TwoWay}" />
+                    <CheckBox Content="biały" Canvas.Left="445" Canvas.Top="321" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding KoloryButow[biały], Mode=TwoWay}" />
+                    <CheckBox Content="czarny" Canvas.Left="74" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding KoloryButow[czarny], Mode=TwoWay}" />
+                    <CheckBox Content="fioletowy" Canvas.Left="205" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding KoloryButow[fioletowy], Mode=TwoWay}" />
+                    <CheckBox Content="zielony" Canvas.Left="326" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding KoloryButow[zielony], Mode=TwoWay}" />
+                    <CheckBox Content="różowy" Canvas.Left="445" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding KoloryButow[różowy], Mode=TwoWay}" />
+                    <CheckBox Content="pomarańczowy" Canvas.Left="555" Canvas.Top="350" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding KoloryButow[pomarańczowy], Mode=TwoWay}" />
+                    <CheckBox Content="brązowy" Canvas.Left="326" Canvas.Top="381" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="{Binding KoloryButow[brązowy], Mode=TwoWay}" />
+
+                    <Button Content="DODAJ" Canvas.Left="303" Canvas.Top="56" Height="54" Width="116" Command="{Binding AddShoeCommand}"/>
+
+
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Usuń Buta">
+                <Canvas Name="myCanvas5" Background="LightCyan">
+                    <ComboBox Canvas.Left="228" Canvas.Top="73" Width="438" Height="32" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" ItemsSource="{Binding Lista_Modeli, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Canvas.Left="299" Canvas.Top="185" Width="296" Height="24" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" ItemsSource="{Binding Lista_Kolorystyk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedKolorystyka, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="USUŃ" Canvas.Left="379" Canvas.Top="399" Height="68" Width="136" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding DeleteShoeCommand}"/>
+                    <Label Content="Wybierz model" Canvas.Left="368" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="158" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="Wybierz kolorystykę" Canvas.Left="345" Canvas.Top="126" Width="204" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="Wybierz SKU" Canvas.Left="378" Canvas.Top="235" Width="138" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <ComboBox Canvas.Left="368" Canvas.Top="300" Width="158" Height="35" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Lista_SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedSKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Dodaj/Modyfikuj/Usuń cennik">
+                <Canvas Name="myCanvas3" Background="LightCyan">
+                    <ComboBox Canvas.Left="228" Canvas.Top="62" Width="438" Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" ItemsSource="{Binding Lista_Modeli, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Canvas.Left="299" Canvas.Top="164" Width="296" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" ItemsSource="{Binding Lista_Kolorystyk, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedKolorystyka, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="DODAJ" Canvas.Left="25" Canvas.Top="411" Height="68" Width="136" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Command="{Binding AddToCennikCommand}"/>
+                    <Button Content="MODYFIKUJ" Canvas.Left="732" Canvas.Top="411" Height="68" Width="139" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.475,0.894" Command="{Binding ModifyToCennikCommand}"/>
+                    <TextBox Canvas.Left="345" TextWrapping="Wrap" Text="{Binding Cena, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Canvas.Top="455" Width="204" Height="24" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Label Content="Wybierz model" Canvas.Left="368" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="158" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="Wybierz kolorystykę" Canvas.Left="345" Canvas.Top="114" Width="204" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    <Label Content="Podaj cenę (zł)" Canvas.Left="368" Canvas.Top="408" Width="158" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+                    <Label Content="Wybierz SKU" Canvas.Left="378" Canvas.Top="216" Width="138" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Canvas.Left="368" Canvas.Top="267" Width="158" Height="35" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding Lista_SKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedSKU, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label Content="Wybierz rozmiar" Canvas.Left="358" Canvas.Top="317" Width="178" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <ComboBox Canvas.Left="368" Canvas.Top="368" Width="158" Height="35" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" ItemsSource="{Binding Lista_Rozmiarow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedRozmiar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="USUŃ" Canvas.Left="732" Canvas.Top="317" Height="68" Width="139" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.475,0.894" Command="{Binding UsunFromCennikCommand}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Poszukaj butów">
+                <Canvas Name="myCanvas4" Background="LightCyan">
+                    <Label Content="Model" Canvas.Left="64" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <ComboBox Canvas.Left="26" Canvas.Top="51" Width="120" ItemsSource="{Binding Lista_Modeli}" SelectedItem="{Binding Model, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label Content="Marka" Canvas.Left="246" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <ComboBox Canvas.Left="208" Canvas.Top="51" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Marki}" SelectedItem="{Binding Marka, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label Content="Kolor" Canvas.Left="438" Canvas.Top="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <ComboBox Canvas.Left="397" Canvas.Top="51" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Lista_Kolorow}" SelectedItem="{Binding Kolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Label Content="Styl" Canvas.Left="637" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                    <ComboBox Canvas.Left="591" Canvas.Top="51" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding Style}" SelectedItem="{Binding Styl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Content="FILTRUJ" Canvas.Left="788" Canvas.Top="11" Height="39" Width="76" RenderTransformOrigin="0.642,0.252" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding ShoesFilterringCommand}"/>
+                    <DataGrid Height="372" Width="864" d:ItemsSource="{d:SampleData ItemCount=5}" Canvas.Left="10" Canvas.Top="124" HorizontalAlignment="Left" VerticalAlignment="Center" ItemsSource="{Binding TableFiltr}"  AutoGenerateColumns="True"/>
+                    <Button Content="RESETUJ" Canvas.Left="788" Canvas.Top="62" Height="39" Width="76" RenderTransformOrigin="0.642,0.252" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Command="{Binding ResetFilterringCommand}"/>
+
+                </Canvas>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
